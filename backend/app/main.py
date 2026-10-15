@@ -24,16 +24,19 @@ load_dotenv(dotenv_path=Path(__file__).resolve().parents[1] / ".env")
 
 app = FastAPI(title="Career Gateway API")
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://career-gateway-frontend-vzui.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 api_key = os.getenv("GROQ_API_KEY")
 model_name = os.getenv("GROQ_MODEL")
