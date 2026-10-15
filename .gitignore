@@ -1,0 +1,21 @@
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+**/.env
+
+# Frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Local databases and generated files
+*.db
+*.sqlite
+*.sqlite3
