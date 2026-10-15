@@ -28,7 +28,7 @@ export default function StudentProfile({ onBack }) {
     setError(false);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/students", {
+    const response = await fetch("https://career-gateway-1l27.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

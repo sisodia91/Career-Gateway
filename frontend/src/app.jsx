@@ -1,5 +1,5 @@
 
-import "./app.css";
+
 import { useState } from "react";
 import CareerChat from "./CareerChat";
 import CareerExplore from "./CareerExplore";
