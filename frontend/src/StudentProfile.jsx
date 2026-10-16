@@ -21,6 +21,7 @@ export default function StudentProfile({ onBack }) {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
+  
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
@@ -28,27 +29,46 @@ export default function StudentProfile({ onBack }) {
     setError(false);
 
     try {
-    const response = await fetch("https://career-gateway-1l27.onrender.com/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const response = await fetch(
+        "https://career-gateway-1l27.onrender.com/students",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(data.detail || "Could not save your profile.");
+        const detail =
+          typeof data.detail === "string"
+            ? data.detail
+            : Array.isArray(data.detail)
+              ? data.detail.map((item) => item.msg).join(", ")
+              : "Could not save your profile.";
+
+        throw new Error(detail);
       }
 
-      setMessage(`Profile saved successfully! Student ID: ${data.id}`);
+      setMessage(
+        `Profile saved successfully! Student ID: ${data.id}`
+      );
       setForm(initialForm);
     } catch (err) {
       setError(true);
-      setMessage(err.message || "Could not connect to Career Gateway.");
+      setMessage(
+        typeof err.message === "string"
+          ? err.message
+          : "Could not connect to Career Gateway."
+      );
     } finally {
       setLoading(false);
     }
   }
+
 
   return (
     <main className="student-profile-page">
