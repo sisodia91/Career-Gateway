@@ -116,3 +116,127 @@
     padding: 22px 18px;
   }
 }
+
+
+/* AI career recommendation results */
+.recommendation-results {
+  background: #ffffff;
+  color: #1e293b;
+  text-align: left;
+}
+
+.recommendation-results h2 {
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.recommendation-markdown {
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.recommendation-markdown h1,
+.recommendation-markdown h2,
+.recommendation-markdown h3 {
+  color: #1d4ed8;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.recommendation-markdown h1 {
+  font-size: 1.5rem;
+}
+
+.recommendation-markdown h2 {
+  font-size: 1.25rem;
+}
+
+.recommendation-markdown h3 {
+  font-size: 1.05rem;
+}
+
+.recommendation-markdown p {
+  margin: 10px 0;
+}
+
+.recommendation-markdown strong {
+  color: #0f172a;
+}
+
+.recommendation-markdown ul,
+.recommendation-markdown ol {
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+.recommendation-markdown li {
+  margin-bottom: 8px;
+}
+
+.recommendation-markdown blockquote {
+  border-left: 4px solid #3b82f6;
+  margin: 16px 0;
+  padding: 8px 16px;
+  background: #eff6ff;
+  border-radius: 0 8px 8px 0;
+}
+
+.recommendation-markdown hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 20px 0;
+}
+
+.recommendation-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.recommendation-markdown th,
+.recommendation-markdown td {
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.recommendation-markdown th {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.recommendation-markdown tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.recommendation-markdown code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .recommendation-results {
+    padding: 14px !important;
+  }
+
+  .recommendation-markdown h1 {
+    font-size: 1.3rem;
+  }
+
+  .recommendation-markdown h2 {
+    font-size: 1.15rem;
+  }
+
+  .recommendation-markdown th,
+  .recommendation-markdown td {
+    padding: 8px;
+  }
+}
