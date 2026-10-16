@@ -16,6 +16,8 @@ from app.database import engine, get_db
 from app.models import Student
 from app.schemas import StudentCreate, StudentResponse
 from sqlalchemy import text
+from app.database import engine, Base
+from app import models
 
 from app.rag import answer_with_rag
 
@@ -23,7 +25,7 @@ from app.rag import answer_with_rag
 load_dotenv(dotenv_path=Path(__file__).resolve().parents[1] / ".env")
 
 app = FastAPI(title="Career Gateway API")
-
+Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,
@@ -101,6 +103,7 @@ def get_students(db: Session = Depends(get_db)):
 
 
 
+
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     if not client:
@@ -115,10 +118,35 @@ def chat(request: ChatRequest):
             detail="GROQ_MODEL is missing from the backend environment.",
         )
 
-    
+    message = request.message.strip()
+    normalized_message = message.lower().strip(" .,!?:;")
+
+    # Handle simple greetings without calling RAG
+    greetings = {
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "hi there",
+        "hello there",
+        "hey there",
+    }
+
+    if normalized_message in greetings:
+        return {
+            "reply": (
+                "Hello! 👋 Welcome to Career Gateway. "
+                "I'm your AI career guide. I can help you explore "
+                "career paths, courses, skills, internships, and career planning. "
+                "What would you like help with today?"
+            )
+        }
+
     try:
         reply = answer_with_rag(
-            request.message,
+            message,
             client,
             model_name
         )
